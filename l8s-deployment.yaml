@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app-deployment
+  labels:
+    app: react-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: react-app
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+        - name: react-container
+          image: ramya5250/react-jenkins-docker-k8s:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: NODE_ENV
+              value: production
